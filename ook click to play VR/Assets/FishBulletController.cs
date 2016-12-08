@@ -4,6 +4,7 @@ using System.Collections;
 public class FishBulletController : MonoBehaviour {
   public GameObject ook;
   public float sqrCollisionThreshold = 50.0f;
+  public AudioSource fishHitAudioSource;
 
   private OokMovement ookMovement;
   private Rigidbody rigidbody;
@@ -24,6 +25,7 @@ public class FishBulletController : MonoBehaviour {
     if (collision.gameObject == ook && collision.relativeVelocity.sqrMagnitude > sqrCollisionThreshold) {
       Debug.Log("Fish hit OOK! " + collision.relativeVelocity.magnitude);
       ookMovement.FishHit(this);
+      fishHitAudioSource.Play();
     }
     //if (rigidbody.velocity.magnitude > 5) {
     //  Debug.Log("clamping velocity");
