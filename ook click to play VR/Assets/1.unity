@@ -445,8 +445,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11465696, guid: f8320535c0a26b74d979991525b241bc, type: 2}
       propertyPath: _customHeadHeight
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 11465696, guid: f8320535c0a26b74d979991525b241bc, type: 2}
+      propertyPath: _CameraRig
+      value: 
+      objectReference: {fileID: 336001626}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8320535c0a26b74d979991525b241bc, type: 2}
   m_IsPrefabParent: 0
@@ -9183,10 +9187,14 @@ Prefab:
     - target: {fileID: 13700000, guid: e0bbdf04cceaa144fabe3abebbc7a656, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6b6a85001de6f9b4495f8228cb1d43d2, type: 2}
+      objectReference: {fileID: 2100000, guid: 436389d1185dfa941ad4042441711005, type: 2}
     - target: {fileID: 400010, guid: e0bbdf04cceaa144fabe3abebbc7a656, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400012, guid: e0bbdf04cceaa144fabe3abebbc7a656, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0026
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e0bbdf04cceaa144fabe3abebbc7a656, type: 3}

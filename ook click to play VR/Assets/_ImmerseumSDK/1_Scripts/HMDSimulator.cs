@@ -387,7 +387,7 @@ namespace Immerseum {
 
             /// <summary>   Height of the custom head. </summary>
             [SerializeField]
-            [Range(0f, 5f)]
+            [Range(0f, 10f)]
             protected float _customHeadHeight;
 
             /// <summary>Indicates whether the scene is actively making use of the <strong>OVRPlayerController</strong> prefab from the Oculus Utilities for Unity.</summary>
