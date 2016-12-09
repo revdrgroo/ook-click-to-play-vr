@@ -66,7 +66,7 @@ public class InputManager : MonoBehaviour {
     if (!GetMouseIntersect(out ray, out intersect)) {
       return;
     }
-    bool shift = Input.GetKey(KeyCode.RightShift);
+    bool shift = Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.LeftShift);
     bool pressed = Input.GetMouseButton(0);
     if (shift && !wasShift) {
       HandleOokCursorRay(ray, false);
