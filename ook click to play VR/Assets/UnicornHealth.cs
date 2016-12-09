@@ -34,10 +34,13 @@ public class UnicornHealth : MonoBehaviour {
   };
 
   private bool inRange = false;
-	// Use this for initialization
-	void Start () {
+  private AudioSource audioSource;
+
+  // Use this for initialization
+  void Start () {
     speechBubble = GetComponentInChildren<SpeechBubble>();
     hp = hitPoints;
+    audioSource = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -101,9 +104,10 @@ public class UnicornHealth : MonoBehaviour {
   }
 
   void Die() {
-    // uiController.RecordPunata();
-    //  uiController.RecordScore(50);
     spawner.Spawn();
+    if (audioSource != null) {
+      audioSource.Play();
+    }
     GameObject obj = (GameObject)Instantiate(explosion, transform.position, transform.rotation);
     obj.SetActive(true);
     ThrowRider();
