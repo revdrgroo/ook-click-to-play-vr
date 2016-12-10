@@ -7,6 +7,8 @@ public class PunataExplosion : MonoBehaviour {
   public int fantaleCount = 5;
   public float explosionHeight;
   public float lifeTimer = 3.0f;
+  public AudioClip sound;
+  public float volume;
 
   GameObject[] projectiles;
   private bool sinkingDebris;
@@ -28,6 +30,7 @@ public class PunataExplosion : MonoBehaviour {
       projectiles[i] = obj;
     }
     particles.Play();
+    AudioSource.PlayClipAtPoint(sound, transform.position, volume);
 	}
 	
 	// Update is called once per frame

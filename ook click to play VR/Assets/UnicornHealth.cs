@@ -16,6 +16,7 @@ public class UnicornHealth : MonoBehaviour {
   public float ragdollForce = 4000.0f;
   public string ragdollPath = "ragdoll";
   public AudioClip meepNoise;
+  public float meepVolume = 1.0f;
   float timer = 0;
   float rainbowTimer = 0;
   int hp;
@@ -35,13 +36,11 @@ public class UnicornHealth : MonoBehaviour {
   };
 
   private bool inRange = false;
-  private AudioSource audioSource;
 
   // Use this for initialization
   void Start () {
     speechBubble = GetComponentInChildren<SpeechBubble>();
     hp = hitPoints;
-    audioSource = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -92,8 +91,7 @@ public class UnicornHealth : MonoBehaviour {
       text.text = string.Format("{0}/{1}", hp, hitPoints);
 //      Debug.Log("Created hp text:" + text);
     }
-    audioSource.clip = meepNoise;
-    audioSource.Play();
+    AudioSource.PlayClipAtPoint(meepNoise, transform.position, meepVolume);
   }
 
   public void InRange(bool inRange) {
