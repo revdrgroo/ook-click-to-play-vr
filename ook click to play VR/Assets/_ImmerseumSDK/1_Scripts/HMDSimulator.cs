@@ -907,7 +907,7 @@ namespace Immerseum {
                 Vector3 cameraRigPosition = Vector3.zero;
 
                 if (isHMDConnected == false) {
-                    cameraRigPosition = new Vector3(cameraPosition.x, 1.06f, cameraPosition.z);
+                    cameraRigPosition = new Vector3(cameraPosition.x, headHeight /*1.06f*/, cameraPosition.z);
                     CameraRig.position = cameraRigPosition;
                     steamVRCameraContainer.transform.SetParent(CameraRig);
                     steamVRCameraContainer.transform.localPosition = new Vector3(0f, _standingAdjustment, 0f);
