@@ -15,6 +15,7 @@ public class UnicornHealth : MonoBehaviour {
   public ScoreBoard scoreBoard;
   public float ragdollForce = 4000.0f;
   public string ragdollPath = "ragdoll";
+  public AudioClip meepNoise;
   float timer = 0;
   float rainbowTimer = 0;
   int hp;
@@ -91,6 +92,8 @@ public class UnicornHealth : MonoBehaviour {
       text.text = string.Format("{0}/{1}", hp, hitPoints);
 //      Debug.Log("Created hp text:" + text);
     }
+    audioSource.clip = meepNoise;
+    audioSource.Play();
   }
 
   public void InRange(bool inRange) {
@@ -105,9 +108,6 @@ public class UnicornHealth : MonoBehaviour {
 
   void Die() {
     spawner.Spawn();
-    if (audioSource != null) {
-      audioSource.Play();
-    }
     GameObject obj = (GameObject)Instantiate(explosion, transform.position, transform.rotation);
     obj.SetActive(true);
     ThrowRider();

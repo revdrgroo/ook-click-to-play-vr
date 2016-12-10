@@ -9,6 +9,8 @@ public class Jewel : MonoBehaviour {
   public float sparkleTimerMax = 0.7f;
   public ScoreBoard scoreBoard;
   public string pun;
+  public AudioClip tinkleClip;
+  public float tinkleVolume;
 
   bool sparkling = false;
   float sparkleTimer = 0.0f;
@@ -44,6 +46,9 @@ public class Jewel : MonoBehaviour {
       sparkleTimer = sparkleTimerMax;
       sparkling = true;
       GameObject obj = (GameObject)Instantiate(textBubble, transform.position, transform.rotation);
+      AudioSource audio = obj.AddComponent<AudioSource>();
+      audio.clip = tinkleClip;
+      audio.Play();
       obj.SetActive(true);
       TextMesh text = obj.GetComponent<TextMesh>();
       text.text = string.Format(pun);

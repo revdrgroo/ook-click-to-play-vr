@@ -10,6 +10,8 @@ public class OokMovement : MonoBehaviour {
   public float minCursorDelta = 0.5f;
   public Camera camera;
   public GameObject hpText;
+  public AudioClip ookSound;
+  public float ookVolume = 1.0f;
 
 
   bool walking;
@@ -265,5 +267,8 @@ public class OokMovement : MonoBehaviour {
     float hp = Mathf.Round(intensity * 10);
     text.color = Color.Lerp(Color.yellow, Color.red, intensity);
     text.text = string.Format("Wet! {0}", hp);
+  }
+  public void OokFootFall() {
+    AudioSource.PlayClipAtPoint(ookSound, transform.position, ookVolume);
   }
 }
