@@ -9,9 +9,12 @@ public class OokMovement : MonoBehaviour {
   public float attackMin = 2.0f;
   public float minCursorDelta = 0.5f;
   public Camera camera;
+
   public GameObject hpText;
   public AudioClip ookSound;
   public float ookVolume = 1.0f;
+  public float ookMaxHealth = 25.0f;
+  public float ookHealth;
 
 
   bool walking;
@@ -44,6 +47,7 @@ public class OokMovement : MonoBehaviour {
     ookRigidbody = GetComponent<Rigidbody>();
     previousPos = transform.position;
     turning = walking = waving = false;
+    ookHealth = ookMaxHealth;
   }
 
  
@@ -248,6 +252,7 @@ public class OokMovement : MonoBehaviour {
 
   internal void FishHit(FishBulletController fishBulletController) {
     //Debug.Log("ook hit by " + fishBulletController);
+    Hurt(1.0f);
     if (currentText == null || currentText.activeInHierarchy == false) {
       currentText = (GameObject)Instantiate(hpText, transform.position, transform.rotation);
       currentText.GetComponent<TextMesh>().color = Color.yellow;
@@ -268,6 +273,7 @@ public class OokMovement : MonoBehaviour {
     float hp = Mathf.Round(intensity * 10);
     text.color = Color.Lerp(Color.yellow, Color.red, intensity);
     text.text = string.Format("Wet! {0}", hp);
+    Hurt(hp);
   }
 
   public void OokFootFall() {
@@ -275,7 +281,16 @@ public class OokMovement : MonoBehaviour {
   }
 
   public void Heal(float healAmount) {
-    Debug.Log("Oook heal: " + healAmount);
+    ookHealth = Mathf.Min(ookHealth + healAmount, ookMaxHealth);
+    Debug.Log("Oook heal: " + healAmount + "-> " + ookHealth + "/" + ookMaxHealth);
   }
 
+  public void Hurt(float hurtAmount) {
+    ookHealth = Mathf.Max(ookHealth - hurtAmount, 0);
+    Debug.Log("Oook hurt: " + hurtAmount + "-> " + ookHealth + "/" + ookMaxHealth);
+  }
+
+  public float getHealthFraction() {
+    return ookHealth / ookMaxHealth;
+  }
 }
