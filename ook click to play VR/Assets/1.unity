@@ -1181,6 +1181,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rate: 1
   sinkTime: 1
+--- !u!114 &322204254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 322204246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a89ddb7736e3c7a4db939ccc54871b6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healAmount: 5
+  ook: {fileID: 169540153}
+  healSound: {fileID: 8300000, guid: f3007f733f28a0a4b87b6f334a3774c9, type: 3}
+  healSoundVolume: 1
 --- !u!1 &322476248
 GameObject:
   m_ObjectHideFlags: 0
@@ -4230,7 +4245,7 @@ ParticleSystemRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
+  m_SelectedWireframeHidden: 1
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -8990,7 +9005,7 @@ Prefab:
       objectReference: {fileID: 900392056}
     - target: {fileID: 11442508, guid: fe2557ad1324dc9429110b437696513c, type: 2}
       propertyPath: lifeTimer
-      value: 4
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 11442508, guid: fe2557ad1324dc9429110b437696513c, type: 2}
       propertyPath: sound
