@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Jewel : MonoBehaviour {
-  public GameObject player;
+  public OokMovement ook;
   public GameObject particles;
   public GameObject jewel;
   public GameObject textBubble;
@@ -11,6 +11,7 @@ public class Jewel : MonoBehaviour {
   public string pun;
   public AudioClip tinkleClip;
   public float tinkleVolume;
+  public float healAmount;
 
   bool sparkling = false;
   float sparkleTimer = 0.0f;
@@ -35,7 +36,7 @@ public class Jewel : MonoBehaviour {
   {
     if (!alive) { return; }
 
-    if(other.gameObject == player)
+    if(other.gameObject == ook.gameObject)
     {
       Debug.Log("player collided: pun = " + pun);
       alive = false;
@@ -52,6 +53,7 @@ public class Jewel : MonoBehaviour {
       obj.SetActive(true);
       TextMesh text = obj.GetComponent<TextMesh>();
       text.text = string.Format(pun);
+      ook.Heal(healAmount);
     }
   }
 

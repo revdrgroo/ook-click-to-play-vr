@@ -14,6 +14,17 @@ public class DisplayOokHealth : MonoBehaviour {
 	void Update () {
     float health = ook.getHealthFraction();
     hurtBar.transform.localScale = new Vector3(1 - health, 1.0f, 1.0f);
+    SetVisibility(health);
     healthBar.transform.localScale = new Vector3(health, 1.0f, 1.0f);
+  }
+
+  private void SetVisibility(float health) {
+    hurtBar.SetActive(true);
+    healthBar.SetActive(true);
+    if (health >= 1.0) {
+      hurtBar.SetActive(false);
+    } else if (health <= 0.0f) {
+      healthBar.SetActive(false);
+    }
   }
 }

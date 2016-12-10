@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class OokHeal : MonoBehaviour {
-  public float healAmount = 5.0f;
+  public float healAmount = 10.0f;
   public GameObject ook;
   public AudioClip healSound;
   public float healSoundVolume = 1.0f;
@@ -25,7 +25,9 @@ public class OokHeal : MonoBehaviour {
     if (collision.gameObject == ook) {
       ookMovement.Heal(healAmount);
       AudioSource.PlayClipAtPoint(healSound, transform.position, healSoundVolume);
-      sinker.Sank();
+      if (sinker != null) {
+        sinker.Sank();
+      }
     }
   }
 }

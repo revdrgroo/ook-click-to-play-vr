@@ -280,7 +280,8 @@ public class OokMovement : MonoBehaviour {
     AudioSource.PlayClipAtPoint(ookSound, transform.position, ookVolume);
   }
 
-  public void Heal(float healAmount) {
+  public void Heal(float percentage) {
+    float healAmount = ookMaxHealth * percentage * 0.01f;
     ookHealth = Mathf.Min(ookHealth + healAmount, ookMaxHealth);
     Debug.Log("Oook heal: " + healAmount + "-> " + ookHealth + "/" + ookMaxHealth);
   }
