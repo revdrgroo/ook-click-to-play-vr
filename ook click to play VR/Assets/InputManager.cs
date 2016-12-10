@@ -88,14 +88,14 @@ public class InputManager : MonoBehaviour {
   }
 
   public void HandleTeleportCursorRay(Ray ray, bool pressed) {
-		Debug.Log ("handle teleport ray " + ray + ", " + pressed);
+		//Debug.Log ("handle teleport ray " + ray + ", " + pressed);
 		 Vector3 intersect;
     GetRayIntersect(ray, out intersect);
     HandleTeleportCursorIntersect(intersect, pressed);
   }
 
   private void HandleTeleportCursorIntersect(Vector3 intersect, bool pressed) {
-		Debug.Log ("handle teleport intersect " + intersect + ", " + pressed);
+		//Debug.Log ("handle teleport intersect " + intersect + ", " + pressed);
 	if (validateIntersect(intersect, vrBounds)) {
       lastValidTeleportIntersect = intersect;
     }

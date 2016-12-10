@@ -20,6 +20,7 @@ public class OokMovement : MonoBehaviour {
   bool turning;
   // targetting true if we have set a target but not reached it yet.
   bool targetting;
+
   private const float TARGET_PROXIMITY_SQR = 0.0001f;
 
   bool tryToHit;
@@ -268,7 +269,13 @@ public class OokMovement : MonoBehaviour {
     text.color = Color.Lerp(Color.yellow, Color.red, intensity);
     text.text = string.Format("Wet! {0}", hp);
   }
+
   public void OokFootFall() {
     AudioSource.PlayClipAtPoint(ookSound, transform.position, ookVolume);
   }
+
+  public void Heal(float healAmount) {
+    Debug.Log("Oook heal: " + healAmount);
+  }
+
 }

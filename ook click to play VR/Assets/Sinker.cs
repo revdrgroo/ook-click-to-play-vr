@@ -31,4 +31,10 @@ public class Sinker : MonoBehaviour {
     enabled = true;
     sinkCountdown = sinkTime;
   }
+
+  public void Sank() {
+    Rigidbody body = GetComponent<Rigidbody>();
+    body.isKinematic = true;
+    transform.position = transform.position + Vector3.down * rate * sinkTime * 2;
+  }
 }

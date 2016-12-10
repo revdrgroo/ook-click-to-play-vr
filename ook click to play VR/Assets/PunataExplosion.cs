@@ -6,7 +6,8 @@ public class PunataExplosion : MonoBehaviour {
   public GameObject[] debris;
   public int fantaleCount = 5;
   public float explosionHeight;
-  public float lifeTimer = 3.0f;
+  public float lifeTimer = 5.0f;
+  public float sinkTime = 2.0f;
   public AudioClip sound;
   public float volume;
 
@@ -36,7 +37,7 @@ public class PunataExplosion : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
     lifeTimer -= Time.deltaTime;
-    if (lifeTimer <= 2.0f && !sinkingDebris) {
+    if (lifeTimer <= sinkTime && !sinkingDebris) {
       SinkDebris();
     }
     if (lifeTimer <= 0.0f) {
