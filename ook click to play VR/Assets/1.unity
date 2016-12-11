@@ -6730,12 +6730,12 @@ MonoBehaviour:
   wave: {fileID: 1096971614}
   ook: {fileID: 169540153}
   fishCanon: {fileID: 471174390}
-  waveCooldown: 15
-  fishCooldown: 10
+  waveCooldown: 10
+  fishCooldown: 6
   waveVariance: 0.5
   fishVariance: 0.5
-  sqrWaveRange: 9
-  sqrMinFishRange: 1
+  waveRange: 5
+  minFishRange: 1
   sinewave: {fileID: 2116437311}
   sinewaveSound: {fileID: 408592135}
 --- !u!1 &1241856763 stripped
@@ -6948,15 +6948,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: e0bbdf04cceaa144fabe3abebbc7a656, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: e0bbdf04cceaa144fabe3abebbc7a656, type: 3}
       propertyPath: m_LocalScale.y
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: e0bbdf04cceaa144fabe3abebbc7a656, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: e0bbdf04cceaa144fabe3abebbc7a656, type: 3}
       propertyPath: m_Controller

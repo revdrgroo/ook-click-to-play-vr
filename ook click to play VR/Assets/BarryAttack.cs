@@ -10,14 +10,16 @@ public class BarryAttack : MonoBehaviour {
   public float fishCooldown = 10.0f;
   public float waveVariance = 0.5f;
   public float fishVariance = 0.5f;
-  public float sqrWaveRange = 8.0f;
-  public float sqrMinFishRange = 1.0f;
+  public float waveRange = 5.0f;
+  public float minFishRange = 1.0f;
   public GameObject sinewave;
   public AudioSource sinewaveSound;
   
 
   private float waveCountdown;
   private float fishCountdown;
+  private float sqrWaveRange;
+  private float sqrMinFishRange;
   private OokMovement ookMovement;
   private Animator sinewaveAnimator;
 
@@ -28,7 +30,8 @@ public class BarryAttack : MonoBehaviour {
     fishCountdown = fishCooldown;
     ookMovement = ook.GetComponent<OokMovement>();
     sinewaveAnimator = sinewave.GetComponent<Animator>();
-
+    sqrWaveRange = waveRange * waveRange;
+    sqrMinFishRange = minFishRange * minFishRange;
 	}
 	
 	// Update is called once per frame
