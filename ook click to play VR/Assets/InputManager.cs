@@ -9,15 +9,12 @@ public class InputManager : MonoBehaviour {
   public GameObject ookCursor;
   public GameObject teleportCursor;
   public bool useMouse = false;
+  public Bounds vrBounds = new Bounds(Vector3.zero, new Vector3(12, 1, 16));
+  public Bounds ookBounds = new Bounds(Vector3.zero, new Vector3(20, 1, 21));
 
   private bool ookWasPressed = false;
   private bool teleportWasPressed = false;
   private bool wasShift = false;
-  private Rect vrBounds = new Rect(-6f, -8f, 12f, 16f);
-  private Rect ookBounds = new Rect (-10f, -10f, 20f, 20f);
-  private Bounds vrBounds3D = new Bounds(Vector3.zero, new Vector3(12, 10, 16));
-  private Vector3 lastValidOokIntersect = Vector3.zero;
-  private Vector3 lastValidTeleportIntersect = Vector3.zero;
   // Use this for initialization
   void Start() {
     teleporter = GetComponent<TeleporterControl>();
@@ -96,38 +93,34 @@ public class InputManager : MonoBehaviour {
   }
 
   private void HandleTeleportCursorIntersect(Vector3 intersect, bool pressed) {
-    //Debug.Log ("handle teleport intersect " + intersect + ", " + pressed);
-    //if (ValidateIntersect(intersect, vrBounds)) {
-    //   lastValidTeleportIntersect = intersect;
-    // }
-    ValidateIntersect3D(intersect, vrBounds3D, out lastValidTeleportIntersect);
+    Vector3 fixedIntersect;
+    ValidateIntersect3D(intersect, vrBounds, out fixedIntersect);
     bool released = teleportWasPressed && !pressed;
     teleportWasPressed = pressed;
 
     if (pressed) {
-      teleportCursor.transform.position = lastValidTeleportIntersect;
+      teleportCursor.transform.position = fixedIntersect;
     }
     teleportCursor.SetActive(pressed);
 
     if (released) {
-      teleporter.Teleport(lastValidTeleportIntersect);
+      teleporter.Teleport(fixedIntersect);
     } 
   }
 
   private void HandleOokCursorIntersect(Vector3 intersect, bool pressed) {
-    if (ValidateIntersect(intersect, ookBounds)) {
-      lastValidOokIntersect = intersect;
-    }
+    Vector3 fixedIntersect = Vector3.zero;
+    ValidateIntersect3D(intersect, ookBounds, out fixedIntersect);
     bool released = ookWasPressed && !pressed;
     ookWasPressed = pressed;
   
     if (pressed) {
-      ookCursor.transform.position = lastValidOokIntersect;
+      ookCursor.transform.position = fixedIntersect;
     }
     ookCursor.SetActive(pressed);
 
     if (pressed) {
-      ookMovement.SetTarget(lastValidOokIntersect);
+      ookMovement.SetTarget(fixedIntersect);
     } else {
       ookMovement.ClearTarget();
     }
