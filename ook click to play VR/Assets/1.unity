@@ -356,16 +356,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11465696, guid: f8320535c0a26b74d979991525b241bc, type: 2}
       propertyPath: _heightTarget
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11465696, guid: f8320535c0a26b74d979991525b241bc, type: 2}
       propertyPath: _customHeadHeight
-      value: 10
+      value: 3.86
       objectReference: {fileID: 0}
     - target: {fileID: 11465696, guid: f8320535c0a26b74d979991525b241bc, type: 2}
       propertyPath: _CameraRig
       value: 
-      objectReference: {fileID: 336001626}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f8320535c0a26b74d979991525b241bc, type: 2}
   m_IsPrefabParent: 0
@@ -1240,7 +1240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a89ddb7736e3c7a4db939ccc54871b6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healAmount: 5
+  healAmount: 10
   ook: {fileID: 169540153}
   healSound: {fileID: 8300000, guid: f3007f733f28a0a4b87b6f334a3774c9, type: 3}
   healSoundVolume: 1
@@ -3939,7 +3939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a23e4de7e7b177498f4ff290ea06e08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 169540153}
+  ook: {fileID: 169540155}
   particles: {fileID: 1116729236}
   jewel: {fileID: 1781127369}
   textBubble: {fileID: 627559619}
@@ -3947,7 +3947,8 @@ MonoBehaviour:
   scoreBoard: {fileID: 23215122}
   pun: 
   tinkleClip: {fileID: 8300000, guid: f3007f733f28a0a4b87b6f334a3774c9, type: 3}
-  tinkleVolume: 0
+  tinkleVolume: 1
+  healAmount: 10
 --- !u!135 &1071310977
 SphereCollider:
   m_ObjectHideFlags: 0

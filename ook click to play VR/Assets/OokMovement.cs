@@ -23,6 +23,7 @@ public class OokMovement : MonoBehaviour {
   bool turning;
   // targetting true if we have set a target but not reached it yet.
   bool targetting;
+  bool dead;
 
   private const float TARGET_PROXIMITY_SQR = 0.0001f;
 
@@ -48,10 +49,14 @@ public class OokMovement : MonoBehaviour {
     previousPos = transform.position;
     turning = walking = waving = false;
     ookHealth = ookMaxHealth;
+    dead = false;
   }
 
  
   void Update() {
+    if (dead) {
+      return;
+    }
     if (targetting) {
       SeekTarget();
     }
@@ -289,6 +294,10 @@ public class OokMovement : MonoBehaviour {
   public void Hurt(float hurtAmount) {
     ookHealth = Mathf.Max(ookHealth - hurtAmount, 0);
     Debug.Log("Oook hurt: " + hurtAmount + "-> " + ookHealth + "/" + ookMaxHealth);
+    if (ookHealth <= 0) {
+      animator.SetTrigger("die");
+      dead = true;
+    }
   }
 
   public float getHealthFraction() {
