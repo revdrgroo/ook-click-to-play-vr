@@ -6455,19 +6455,6 @@ MonoBehaviour:
   sqrMinFishRange: 1
   sinewave: {fileID: 2116437311}
   sinewaveSound: {fileID: 408592135}
---- !u!136 &1233507286
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1233507280}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.12
-  m_Height: 0.3
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.17, z: 0}
 --- !u!1 &1254141649
 GameObject:
   m_ObjectHideFlags: 0
@@ -7104,6 +7091,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1420263418}
+  - 136: {fileID: 1420263420}
+  - 54: {fileID: 1420263419}
   m_Layer: 0
   m_Name: BarryParent
   m_TagString: Untagged
@@ -7125,6 +7114,34 @@ Transform:
   - {fileID: 1233507281}
   m_Father: {fileID: 0}
   m_RootOrder: 33
+--- !u!54 &1420263419
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1420263417}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: Infinity
+  m_AngularDrag: Infinity
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 84
+  m_CollisionDetection: 0
+--- !u!136 &1420263420
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1420263417}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.12
+  m_Height: 0.3
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.17, z: 0}
 --- !u!1 &1422614345 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 62cf981aa8f448344a314487adc030cd, type: 3}

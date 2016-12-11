@@ -5,9 +5,11 @@ using System.Collections;
 
 public class BarryAnimation: MonoBehaviour {
   public bool moving { get; set; }
+  Rigidbody parentRigidbody;
 
   void Start() {
     moving = true;
+    parentRigidbody = GetComponentInParent<Rigidbody>();
   }
 
   void OnAnimatorMove() {
@@ -15,9 +17,10 @@ public class BarryAnimation: MonoBehaviour {
 
     if (animator && moving) {
       //Debug.Log("Root motion = " + animator.GetFloat("RootMotion"));
-      Vector3 delta = transform.right * animator.GetFloat("RootMotion") * Time.deltaTime;
-      Vector3 newPosition = transform.position - delta;
-      transform.position = newPosition;
+      Vector3 delta = transform.right * animator.GetFloat("RootMotion") *
+        animator.GetFloat("Speed") * Time.deltaTime;
+      Vector3 newPosition = parentRigidbody.transform.position - delta;
+      parentRigidbody.MovePosition(newPosition);
     }
   }
   
