@@ -7,8 +7,8 @@ public class ScoreBoard : MonoBehaviour {
 
   private int score = 0;
   void Start () {
-    scoreText.text = "0 Poinxxxts";
-    punText.text = "pun pun pun...";
+    scoreText.text = "0 Points";
+    punText.text = "...";
 	}
 	
 	// Update is called once per frame
