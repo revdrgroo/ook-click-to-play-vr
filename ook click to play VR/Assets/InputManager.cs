@@ -15,6 +15,7 @@ public class InputManager : MonoBehaviour {
   private bool wasShift = false;
   private Rect vrBounds = new Rect(-6f, -8f, 12f, 16f);
   private Rect ookBounds = new Rect (-10f, -10f, 20f, 20f);
+  private Bounds vrBounds3D = new Bounds(Vector3.zero, new Vector3(12, 10, 16));
   private Vector3 lastValidOokIntersect = Vector3.zero;
   private Vector3 lastValidTeleportIntersect = Vector3.zero;
   // Use this for initialization
@@ -95,10 +96,11 @@ public class InputManager : MonoBehaviour {
   }
 
   private void HandleTeleportCursorIntersect(Vector3 intersect, bool pressed) {
-		//Debug.Log ("handle teleport intersect " + intersect + ", " + pressed);
-	if (validateIntersect(intersect, vrBounds)) {
-      lastValidTeleportIntersect = intersect;
-    }
+    //Debug.Log ("handle teleport intersect " + intersect + ", " + pressed);
+    //if (ValidateIntersect(intersect, vrBounds)) {
+    //   lastValidTeleportIntersect = intersect;
+    // }
+    ValidateIntersect3D(intersect, vrBounds3D, out lastValidTeleportIntersect);
     bool released = teleportWasPressed && !pressed;
     teleportWasPressed = pressed;
 
@@ -113,7 +115,7 @@ public class InputManager : MonoBehaviour {
   }
 
   private void HandleOokCursorIntersect(Vector3 intersect, bool pressed) {
-    if (validateIntersect(intersect, ookBounds)) {
+    if (ValidateIntersect(intersect, ookBounds)) {
       lastValidOokIntersect = intersect;
     }
     bool released = ookWasPressed && !pressed;
@@ -131,10 +133,28 @@ public class InputManager : MonoBehaviour {
     }
   }
 
-  private bool validateIntersect(Vector3 intersect, Rect bounds) {
+  private bool ValidateIntersect(Vector3 intersect, Rect bounds) {
     Vector2 int2 = new Vector2(intersect.x, intersect.z);
     //Debug.Log("validateIntersect: " + int2 + "," + bounds);
     return bounds.Contains(int2);
+  }
+
+  private bool ValidateIntersect3D(Vector3 intersect, Bounds bounds, out Vector3 repaired) {
+    if (bounds.Contains(intersect)) {
+      repaired = intersect;
+      return true;
+    }
+    Vector3 int3 = new Vector3(intersect.x, 0, intersect.z);
+    Vector3 cam3 = new Vector3(worldCamera.transform.position.x, 0, worldCamera.transform.position.z);
+    Ray ray = new Ray(int3, cam3 - int3);
+    float distance;
+    if (bounds.IntersectRay(ray, out distance)) {
+      repaired = ray.GetPoint(distance);
+      repaired.y = intersect.y;
+      return false;
+    }
+    repaired = Vector3.zero;
+    return false;
   }
 }
 
