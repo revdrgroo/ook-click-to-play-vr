@@ -16,6 +16,7 @@ public class OokMovement : MonoBehaviour {
   public float ookMaxHealth = 25.0f;
   public float ookHealth;
 
+  public GameObject gameOverSign;
 
   bool walking;
 
@@ -39,6 +40,8 @@ public class OokMovement : MonoBehaviour {
 
   int hitCount = 0;
   GameObject currentText = null;
+  float gameOverDelay = 2.0f;
+  float gameOverCountdown;
 
   void Start() {
     UnityEngine.Random.seed = (int)DateTime.Now.Ticks;
@@ -55,6 +58,7 @@ public class OokMovement : MonoBehaviour {
  
   void Update() {
     if (dead) {
+      PostDeathLoop();
       return;
     }
     if (targetting) {
@@ -295,12 +299,29 @@ public class OokMovement : MonoBehaviour {
     ookHealth = Mathf.Max(ookHealth - hurtAmount, 0);
     Debug.Log("Oook hurt: " + hurtAmount + "-> " + ookHealth + "/" + ookMaxHealth);
     if (ookHealth <= 0) {
-      animator.SetTrigger("die");
-      dead = true;
+      Die();
+    }
+  }
+
+  private void Die() {
+    ookHealth = 0;
+    animator.SetTrigger("die");
+    dead = true;
+    gameOverCountdown = gameOverDelay;
+  }
+
+  private void PostDeathLoop() {
+    gameOverCountdown -= Time.deltaTime;
+    if (gameOverCountdown <= 0) {
+      gameOverSign.SetActive(true);
     }
   }
 
   public float getHealthFraction() {
     return ookHealth / ookMaxHealth;
+  }
+
+  public bool isAlive() {
+    return !dead;
   }
 }

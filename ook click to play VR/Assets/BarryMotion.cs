@@ -5,10 +5,29 @@ public class BarryMotion : MonoBehaviour {
   public float velocity = 1.1f;
   public float turnSpeed = 1.0f;
   public float turnTowardsSpeed = 3.0f;
-  public Transform target;
+  public GameObject ook;
+
+  OokMovement ookMovment;
+  Animator animator;
+  BarryAnimation barryAnimation;
+
+  bool seeking;
+
+  private void Start() {
+    animator = GetComponent<Animator>();
+    barryAnimation = GetComponent<BarryAnimation>();
+    ookMovment = ook.GetComponent<OokMovement>();
+    seeking = true;
+  }
  
   void Update() {
-    TurnTowards(target.transform.position);
+    if (seeking && !ookMovment.isAlive()) {
+      barryAnimation.moving = false;
+      seeking = false;
+      animator.SetTrigger("Stop");
+      animator.SetFloat("RootMotion", 0);
+    }
+    TurnTowards(ook.transform.position);
   }
 
   bool TurnTowards(Vector3 target) {
