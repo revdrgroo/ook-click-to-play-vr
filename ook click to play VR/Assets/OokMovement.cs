@@ -324,4 +324,15 @@ public class OokMovement : MonoBehaviour {
   public bool isAlive() {
     return !dead;
   }
+
+	public void ResetIfDead() {
+		Debug.Log ("Reset if dead!");
+		if (isAlive ()) {
+			return;
+		}
+		dead = false;
+		Heal (100);
+		animator.SetTrigger ("reborn");
+		gameOverSign.SetActive (false);
+	}
 }

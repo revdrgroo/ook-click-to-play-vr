@@ -16,7 +16,12 @@ public class WandHandler : MonoBehaviour {
 		Debug.Log ("controller = " + trackedController);
 		trackedController.TriggerClicked += Device_TriggerClicked;
 		trackedController.TriggerUnclicked += Device_TriggerUnclicked;
+		trackedController.PadClicked += Device_PadClicked;
 		pressed = false;
+	}
+
+	void Device_PadClicked(object sender, ClickedEventArgs e) {
+		inputManager.HandleResetButton();
 	}
 
 	void Device_TriggerClicked (object sender, ClickedEventArgs e)

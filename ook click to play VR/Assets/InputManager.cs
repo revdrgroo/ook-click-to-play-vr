@@ -149,5 +149,11 @@ public class InputManager : MonoBehaviour {
     repaired = Vector3.zero;
     return false;
   }
+		
+	public void HandleResetButton() {
+		Debug.Log ("Reset button pressed");
+		ookMovement.ResetIfDead();
+		Debug.Log ("Reset button pressed done");
+	}
 }
 
